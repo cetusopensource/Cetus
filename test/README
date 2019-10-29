@@ -1,0 +1,6 @@
+
+----------------------
+All test packages were taken out from the repository and they are now available
+in /home/yara/re/paramnt/tools/Cetus/plugins. The scripts "update-suite" and
+"commit-suite" are helper scripts that automate the updating process of any test
+packages to some degree.

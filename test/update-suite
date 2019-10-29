@@ -1,0 +1,18 @@
+
+host="min.ecn.purdue.edu"
+repository="/home/yara/re/paramnt/tools/Cetus/plugins"
+if [ $# -lt 1 ]; then
+  echo "Available suites: "
+  for suite in `ssh $host "cd $repository; ls *.tgz"`; do
+    echo "  $suite"
+  done
+  echo "Usage: $0 <test suite>"
+  exit 0
+fi
+for suite in $*; do
+  echo "Downloading $suite ..."
+  scp $host:$repository/$suite .
+  echo "Extracting $suite ..."
+  tar zxvf $suite >/dev/null
+  rm $suite
+done

@@ -1,0 +1,16 @@
+
+host="min.ecn.purdue.edu"
+repository="/home/yara/re/paramnt/tools/Cetus/plugins"
+if [ $# -lt 1 ]; then
+  echo "Available suites: "
+  for file in `ls`; do [ -d $file ] && echo "  $file"; done
+  echo "Usage: $0 <test suite>"
+  exit 0
+fi
+for suite in $*; do
+  echo "Archiving $suite ..."
+  tar zcvf $suite.tgz $suite >/dev/null
+  echo "Uploading $suite ..."
+  scp $suite.tgz $host:$repository
+  rm $suite.tgz
+done
